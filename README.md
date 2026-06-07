@@ -5,7 +5,8 @@
 ![Java](https://img.shields.io/badge/Java-17-007396?logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2-6DB33F?logo=springboot&logoColor=white)
 ![Angular](https://img.shields.io/badge/Angular-17-DD0031?logo=angular&logoColor=white)
-![Gemini](https://img.shields.io/badge/Google_Gemini-AI-4285F4?logo=google&logoColor=white)
+![Spring AI](https://img.shields.io/badge/Spring_AI-1.0.0-6DB33F?logo=spring&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini_3.1_Flash_Lite-500_RPD_Free-4285F4?logo=google&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
@@ -70,8 +71,8 @@ When you're ready, hit **Move to Next Phase** — the AI opens the next phase wi
 | Layer | Technology |
 |---|---|
 | Backend | Spring Boot 3.2, Java 17 |
-| AI | Google Gemini (`gemini-2.5-flash-lite`) via REST |
-| Async HTTP | Spring WebFlux / WebClient |
+| AI Integration | Spring AI 1.0.0 (`ChatClient` — OpenAI-compatible adapter) |
+| AI Model | Google Gemini `gemini-3.1-flash-lite` — 500 RPD free tier |
 | Database | H2 in-memory (dev) — swappable to PostgreSQL |
 | ORM | Spring Data JPA + Hibernate |
 | Frontend | Angular 17, standalone components, Signals API |
@@ -98,12 +99,13 @@ When you're ready, hit **Move to Next Phase** — the AI opens the next phase wi
 │  InterviewController  →  InterviewService               │
 │                               │                         │
 │                       GeminiAiService                   │
-│                      (WebClient + retry)                │
+│                   (Spring AI ChatClient)                │
 └────────────────────────┬────────────────────────────────┘
-                         │
+                         │ OpenAI-compatible endpoint
           ┌──────────────▼──────────────┐
           │      Google Gemini API      │
-          │  gemini-2.5-flash-lite      │
+          │  gemini-3.1-flash-lite      │
+          │  (500 RPD free tier)        │
           └─────────────────────────────┘
 ```
 
@@ -169,9 +171,9 @@ All backend settings live in `backend/src/main/resources/application.yml`.
 
 | Property | Default | Description |
 |---|---|---|
-| `gemini.api.key` | *(required)* | Your Gemini API key |
-| `gemini.api.model` | `gemini-2.5-flash-lite` | Gemini model name |
-| `gemini.api.timeout` | `30` | HTTP timeout in seconds |
+| `GEMINI_API_KEY` env var | *(required)* | Your Gemini API key |
+| `spring.ai.openai.chat.options.model` | `models/gemini-3.1-flash-lite` | Gemini model via Spring AI |
+| `spring.ai.openai.base-url` | Gemini OpenAI-compatible endpoint | Swap to use any OpenAI-compatible model |
 | `cors.allowed-origins` | `http://localhost:4200` | Frontend origin for CORS |
 
 **Switching to PostgreSQL for production:**
@@ -264,7 +266,7 @@ POST /api/v1/sessions/answer
 lld-interview-platform/
 ├── backend/
 │   └── src/main/java/com/lld/interview/
-│       ├── config/          # CORS, WebClient bean
+│       ├── config/          # CORS, Spring AI ChatClient bean
 │       ├── controller/      # REST endpoints + global exception handler
 │       ├── dto/             # Request / Response DTOs
 │       ├── model/           # JPA entities (InterviewSession, Topic, QuestionResponse)
