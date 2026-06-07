@@ -724,10 +724,15 @@ export class InterviewComponent implements OnInit, AfterViewInit, AfterViewCheck
           }, 150);
         });
       },
-      error: () => {
+      error: (err: any) => {
         this.aiTyping.set(false);
         this.submitting.set(false);
-        this.addMessage('ai', 'Sorry, I had trouble evaluating that answer. Please try again.');
+        const msg = err?.error?.message ?? '';
+        if (err?.status === 400 && msg.includes('Session not found')) {
+          this.addMessage('ai', 'Your session has expired because the server was restarted. Please go back to the home page and start a new interview.');
+        } else {
+          this.addMessage('ai', 'Sorry, I had trouble evaluating that answer. Please try again.');
+        }
       }
     });
   }
