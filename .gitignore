@@ -1,0 +1,53 @@
+# ── Java / Maven ──────────────────────────────────────────
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# Maven wrapper (keep the wrapper scripts, ignore downloaded binaries)
+.mvn/wrapper/maven-wrapper.jar
+
+# ── Spring Boot ───────────────────────────────────────────
+spring.log
+/backend/src/main/resources/application-local.yml
+
+# ── Node / Angular ────────────────────────────────────────
+node_modules/
+dist/
+.angular/
+.npm/
+npm-debug.log*
+yarn-error.log
+
+# ── Environment & secrets ─────────────────────────────────
+.env
+.env.*
+*.env
+application-secret.yml
+**/application-local.yml
+
+# ── IDEs ──────────────────────────────────────────────────
+.idea/
+*.iml
+*.iws
+.vscode/
+*.swp
+*.swo
+
+# ── OS ────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Logs ──────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Misc ──────────────────────────────────────────────────
+.claude/
+improvements/
+error/
