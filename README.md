@@ -24,6 +24,31 @@ When you're ready, hit **Move to Next Phase** — the AI opens the next phase wi
 
 ---
 
+## Screenshots
+
+**Topic Selection — pick your topic and experience level**
+![Home](ui-screenshots/home-topic-selection.png)
+
+**Interview Screen — AI interviewer opens Phase 1**
+![Interview Start](ui-screenshots/interview-phase1-start.png)
+
+**Conversational Flow — AI responds to your answers in real time**
+![Conversation](ui-screenshots/interview-phase2-conversation.png)
+
+**Feedback Panel — scores, model answer, and Move to Next Phase**
+![Feedback Scores](ui-screenshots/interview-feedback-scores.png)
+
+**Class Diagram — UML boxes auto-generated from your design**
+![Class Diagram](ui-screenshots/interview-class-diagram.png)
+
+**Design Patterns Phase — colored UML with member visibility**
+![UML Patterns](ui-screenshots/interview-uml-patterns.png)
+
+**Results Page — overall score, AI summary, phase-by-phase breakdown**
+![Results](ui-screenshots/results-page.png)
+
+---
+
 ## Features
 
 | Feature | Detail |
